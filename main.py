@@ -8,10 +8,6 @@ search_terms = os.environ.get("SEARCH_TERMS").split(",")
 
 
 def bearer_oauth(r):
-    """
-    Method required by bearer token authentication.
-    """
-
     r.headers["Authorization"] = f"Bearer {bearer_token}"
     r.headers["User-Agent"] = "v2FilteredStreamPython"
     return r
