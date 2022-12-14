@@ -6,6 +6,7 @@ Stream twitter terms, then slack them to a webhook
 
 ```shell
 cp .env.default .env
+python main.py
 ```
 
 ### Deployment
