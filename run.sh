@@ -1,4 +1,4 @@
 #!/bin/bash
 
 export $(cat .env | grep -v ^# | xargs);
-python main.py
+exec python main.py
