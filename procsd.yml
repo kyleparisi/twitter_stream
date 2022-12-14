@@ -1,0 +1,2 @@
+app: twitter_stream
+formation: worker=1

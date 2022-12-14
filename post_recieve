@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -x
+
+echo "checkout"
+SERVICE=$(basename $(pwd) |sed 's/.git//')
+BUILD_DIR=$(mktemp -d /home/kyle/$SERVICE) && echo $BUILD_DIR
+git --work-tree="$BUILD_DIR" checkout -f
+cd $BUILD_DIR
+echo "install dependencies"
+pip install -r requirements.txt
+echo "lint check"
+./lint.sh --check
+echo "deploy"
+procsd restart
+echo "done"
