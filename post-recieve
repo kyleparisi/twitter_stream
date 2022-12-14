@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -x
+set -xe
 
 echo "install dependencies"
 pip install -r requirements.txt
