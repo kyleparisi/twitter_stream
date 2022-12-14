@@ -15,3 +15,8 @@ cp .env.default .env
 # setup post-receive hook in a server
 git push
 ```
+
+### Requirements
+
+- python
+- [procsd](https://github.com/vifreefly/procsd) for deployment
