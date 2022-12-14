@@ -4,7 +4,8 @@ set -x
 
 echo "checkout"
 SERVICE=$(basename $(pwd) |sed 's/.git//')
-BUILD_DIR=$(mktemp -d /home/kyle/$SERVICE) && echo $BUILD_DIR
+BUILD_DIR="/home/kyle/$SERVICE" && echo $BUILD_DIR
+mkdir $BUILD_DIR
 git --work-tree="$BUILD_DIR" checkout -f
 cd $BUILD_DIR
 echo "install dependencies"
