@@ -23,7 +23,7 @@ def get_rules():
     )
     if response.status_code != 200:
         raise Exception(
-            "Cannot get rules (HTTP {}): {}".format(response.status_code, response.text)
+            f"Cannot get rules (HTTP {response.status_code}): {response.text}"
         )
     print(json.dumps(response.json()))
     return response.json()
