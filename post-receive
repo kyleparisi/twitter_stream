@@ -15,5 +15,5 @@ echo "deploy"
 procsd restart
 echo "sample logs"
 sleep 1
-procsc logs -n 20
+procsd logs -n 20
 echo "done"
