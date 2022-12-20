@@ -84,6 +84,10 @@ def send_slack(link):
         )
 
 
+class OperationalDisconnect(Exception):
+    pass
+
+
 def get_stream(set):
     response = requests.get(
         "https://api.twitter.com/2/tweets/search/stream",
@@ -101,7 +105,7 @@ def get_stream(set):
             continue
         json_response = json.loads(response_line)
         if "OperationalDisconnect" in json_response:
-            continue
+            raise OperationalDisconnect
         print(json_response)
         id = json_response["data"]["id"]
         url = f"https://api.twitter.com/2/tweets?ids={id}&expansions=author_id"
@@ -117,7 +121,13 @@ def main():
     rules = get_rules()
     delete = delete_all_rules(rules)
     set = set_rules(delete)
-    get_stream(set)
+    run = True
+    while run:
+        try:
+            get_stream(set)
+        except OperationalDisconnect:
+            # https://developer.twitter.com/en/docs/twitter-api/enterprise/powertrack-api/faq#:~:text=This%20stream%20has%20been%20disconnected,from%20the%20stream%20fast%20enough.
+            continue
 
 
 if __name__ == "__main__":
