@@ -2,6 +2,5 @@
 
 set -e
 
-. ../.bashrc
 black main.py "$@"
 flake8 main.py
