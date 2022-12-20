@@ -13,4 +13,7 @@ echo "lint check"
 ./lint.sh --check
 echo "deploy"
 procsd restart
+echo "sample logs"
+sleep 1
+procsc logs -n 20
 echo "done"
