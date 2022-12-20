@@ -100,6 +100,8 @@ def get_stream(set):
         if not response_line:
             continue
         json_response = json.loads(response_line)
+        if "OperationalDisconnect" in json_response:
+            continue
         print(json_response)
         id = json_response["data"]["id"]
         url = f"https://api.twitter.com/2/tweets?ids={id}&expansions=author_id"
